@@ -1,6 +1,9 @@
 extends Node2D
 
 @onready var player = $Player
+@onready var score = $UI/Score
+@onready var game_over_label = $UI/GameOver
+@onready var new_record = $UI/NewRecord
 
 
 const HAZARD_SCENE := preload("res://hazard.tscn")
@@ -12,6 +15,7 @@ var upper_spawn := -20.0
 var max_speed := 500.0
 var current_fall_speed := 300.0
 var is_game_over := false
+var best_time := GameState.best_time
 
 
 
@@ -27,11 +31,11 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if not is_game_over:
+		
 		time_survived += delta
+		score.text = "Score: %d" % time_survived
 		
-		$UI/Score.text = "Score: %.1f\nBest: %.1f" % [time_survived, GameState.best_time]
-		
-		GameState.best_time = maxf(GameState.best_time, time_survived)
+	
 		
 
 
@@ -45,7 +49,12 @@ func _on_timer_timeout() -> void:
 	
 func game_over():
 	$Timer.stop()
-	$UI/GameOver.show()
+	var is_new_record := time_survived > best_time
+	best_time = maxf(best_time, time_survived)
+	game_over_label.text = "GAME OVER - Press SPACE\n Survived: %.1f" % time_survived
+	game_over_label.show()
+	if is_new_record:
+		new_record.show()
 	is_game_over = true
 	
 func _unhandled_input(event: InputEvent) -> void:
