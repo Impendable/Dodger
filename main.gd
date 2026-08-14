@@ -8,15 +8,16 @@ var min_x: float
 var max_x: float
 var upper_spawn := -20.0
 var max_speed := 500.0
+var current_fall_speed := 300.0
 var is_game_over := false
 
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var half_width := 20.0
-	min_x = half_width
-	max_x = get_viewport_rect().size.x - half_width
+	var hazard_half_width := 8.0
+	min_x = hazard_half_width
+	max_x = get_viewport_rect().size.x - hazard_half_width
 	
 	player.died.connect(game_over)
 
@@ -29,7 +30,8 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	var hazard = HAZARD_SCENE.instantiate()
 	hazard.position = Vector2(randf_range(min_x, max_x), upper_spawn)
-	hazard.fall_speed = min(hazard.fall_speed + 20, max_speed)
+	current_fall_speed = min(current_fall_speed + 8, max_speed)
+	hazard.fall_speed = current_fall_speed
 	add_child(hazard)
 	$Timer.wait_time = max(0.25, $Timer.wait_time -0.02)
 	
