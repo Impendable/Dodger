@@ -12,7 +12,7 @@ var time_survived: float
 var min_x: float
 var max_x: float
 var upper_spawn := -20.0
-var max_speed := 500.0
+var max_speed := 900.0
 var current_fall_speed := 300.0
 var is_game_over := false
 var best_time := GameState.best_time
@@ -35,7 +35,8 @@ func _process(delta: float) -> void:
 		time_survived += delta
 		score.text = "Score: %d" % time_survived
 		
-	
+	if Input.is_action_pressed("quit"):
+		get_tree().change_scene_to_file("res://title.tscn")
 		
 
 
@@ -45,7 +46,8 @@ func _on_timer_timeout() -> void:
 	current_fall_speed = min(current_fall_speed + 8, max_speed)
 	hazard.fall_speed = current_fall_speed
 	add_child(hazard)
-	$Timer.wait_time = max(0.25, $Timer.wait_time -0.02)
+	$Timer.wait_time = max(0.12, $Timer.wait_time -0.02)
+
 	
 func game_over():
 	$Timer.stop()
