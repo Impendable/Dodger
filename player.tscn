@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x0ad"]
 size = Vector2(40, 40)
 
-[node name="Area2D" type="Area2D" unique_id=387781656]
+[node name="Player" type="Area2D" unique_id=387781656]
 script = ExtResource("1_4flbx")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1747796526]

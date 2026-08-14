@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b585vtdia5uhq"]
 
 [ext_resource type="PackedScene" uid="uid://0qpiqsce2pry" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="PackedScene" uid="uid://bpawin1t13d3i" path="res://hazard.tscn" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D" unique_id=848245841]
 
@@ -12,8 +13,5 @@ color = Color(0, 0, 0, 1)
 [node name="Player" parent="." unique_id=387781656 instance=ExtResource("1_ig7tw")]
 position = Vector2(320, 300)
 
-[node name="ColorRect2" type="ColorRect" parent="." unique_id=1730061937]
-offset_left = 92.0
-offset_top = 6.0
-offset_right = 98.0
-offset_bottom = 190.0
+[node name="hazard" parent="." unique_id=1437491443 instance=ExtResource("2_0xm2m")]
+position = Vector2(313, 26)

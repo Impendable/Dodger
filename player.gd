@@ -12,13 +12,13 @@ func _ready() -> void:
 	max_x = get_viewport_rect().size.x - half_width
 
 
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
-	if direction != 0.0:
-		print("AXIS: ", direction)
 	position.x += direction * speed * delta
 	position.x = clamp(position.x, min_x, max_x)
-	
-func _input(event: InputEvent) -> void:
-	print("EVENT: ", event)
+
+
+func _on_area_entered(area: Area2D) -> void:
+	print("Hit")
