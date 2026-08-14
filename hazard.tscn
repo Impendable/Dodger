@@ -3,16 +3,16 @@
 [ext_resource type="Script" uid="uid://deoa4dmhv8vfe" path="res://hazard.gd" id="1_0qld2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x0ad"]
-size = Vector2(40, 40)
+size = Vector2(12, 12)
 
 [node name="Hazard" type="Area2D" unique_id=1437491443]
 script = ExtResource("1_0qld2")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1169530854]
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = 8.0
+offset_bottom = 8.0
 color = Color(0.92156863, 0, 0.23921569, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2009459727]

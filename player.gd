@@ -5,6 +5,8 @@ extends Area2D
 var min_x: float
 var max_x: float
 
+signal died
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	var half_width := 20.0
@@ -21,4 +23,5 @@ func _process(delta: float) -> void:
 
 
 func _on_area_entered(area: Area2D) -> void:
-	print("Hit")
+	died.emit()
+	set_process(false)

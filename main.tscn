@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://b585vtdia5uhq"]
 
+[ext_resource type="Script" uid="uid://co7sx84qo7hnf" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://0qpiqsce2pry" path="res://player.tscn" id="1_ig7tw"]
-[ext_resource type="PackedScene" uid="uid://bpawin1t13d3i" path="res://hazard.tscn" id="2_0xm2m"]
 
 [node name="Node2D" type="Node2D" unique_id=848245841]
+script = ExtResource("1_0xm2m")
+
+[node name="Timer" type="Timer" parent="." unique_id=462491998]
+autostart = true
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2038729147]
 offset_right = 641.0
@@ -13,5 +17,18 @@ color = Color(0, 0, 0, 1)
 [node name="Player" parent="." unique_id=387781656 instance=ExtResource("1_ig7tw")]
 position = Vector2(320, 300)
 
-[node name="hazard" parent="." unique_id=1437491443 instance=ExtResource("2_0xm2m")]
-position = Vector2(313, 26)
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=196066924]
+
+[node name="Label" type="Label" parent="CanvasLayer" unique_id=971527984]
+visible = false
+offset_left = -116.0
+offset_top = 118.0
+offset_right = 756.0
+offset_bottom = 223.0
+theme_override_colors/font_color = Color(0.26666668, 0.85882354, 0, 1)
+theme_override_font_sizes/font_size = 48
+text = "GAME OVER - Press SPACE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
