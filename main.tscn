@@ -17,9 +17,9 @@ color = Color(0, 0, 0, 1)
 [node name="Player" parent="." unique_id=387781656 instance=ExtResource("1_ig7tw")]
 position = Vector2(320, 300)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=196066924]
+[node name="UI" type="CanvasLayer" parent="." unique_id=196066924]
 
-[node name="Label" type="Label" parent="CanvasLayer" unique_id=971527984]
+[node name="GameOver" type="Label" parent="UI" unique_id=971527984]
 visible = false
 offset_left = -116.0
 offset_top = 118.0
@@ -30,5 +30,14 @@ theme_override_font_sizes/font_size = 48
 text = "GAME OVER - Press SPACE"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Score" type="Label" parent="UI" unique_id=469065523]
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 51.0
+offset_bottom = 50.0
+theme_override_colors/font_color = Color(1, 1, 1, 0.63529414)
+theme_override_font_sizes/font_size = 29
+text = "0000"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

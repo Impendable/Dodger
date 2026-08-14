@@ -2,8 +2,10 @@ extends Node2D
 
 @onready var player = $Player
 
+
 const HAZARD_SCENE := preload("res://hazard.tscn")
 
+var time_survived: float
 var min_x: float
 var max_x: float
 var upper_spawn := -20.0
@@ -24,7 +26,13 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if not is_game_over:
+		time_survived += delta
+		
+		$UI/Score.text = "Score: %.1f\nBest: %.1f" % [time_survived, GameState.best_time]
+		
+		GameState.best_time = maxf(GameState.best_time, time_survived)
+		
 
 
 func _on_timer_timeout() -> void:
@@ -37,13 +45,13 @@ func _on_timer_timeout() -> void:
 	
 func game_over():
 	$Timer.stop()
-	$CanvasLayer/Label.show()
+	$UI/GameOver.show()
 	is_game_over = true
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_game_over:
 		return
-	if event.is_action_pressed("Restart"):
+	if event.is_action_pressed("restart"):
 		restart_game()
 
 func restart_game():
