@@ -24,4 +24,6 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(_area: Area2D) -> void:
 	died.emit()
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 0.25)
+	$GameOver.play()
 	set_process(false)

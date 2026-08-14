@@ -15,7 +15,6 @@ var upper_spawn := -20.0
 var max_speed := 900.0
 var current_fall_speed := 300.0
 var is_game_over := false
-var best_time := GameState.best_time
 
 
 
@@ -35,9 +34,6 @@ func _process(delta: float) -> void:
 		time_survived += delta
 		score.text = "Score: %d" % time_survived
 		
-	if Input.is_action_pressed("quit"):
-		get_tree().change_scene_to_file("res://title.tscn")
-		
 
 
 func _on_timer_timeout() -> void:
@@ -51,12 +47,14 @@ func _on_timer_timeout() -> void:
 	
 func game_over():
 	$Timer.stop()
-	var is_new_record := time_survived > best_time
-	best_time = maxf(best_time, time_survived)
-	game_over_label.text = "GAME OVER - Press SPACE\n Survived: %.1f" % time_survived
-	game_over_label.show()
+	var is_new_record := time_survived > GameState.best_time
+	
 	if is_new_record:
+		$NewRecord.play()
+		GameState.best_time = time_survived
 		new_record.show()
+	game_over_label.text = "GAME OVER - Press SPACE\nSurvived: %.1f\nBest: %.1f" % [time_survived, GameState.best_time]
+	game_over_label.show()
 	is_game_over = true
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -64,6 +62,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if event.is_action_pressed("restart"):
 		restart_game()
+	if event.is_action_pressed("quit"):
+		get_tree().change_scene_to_file("res://title.tscn")
 
 func restart_game():
 	get_tree().reload_current_scene()

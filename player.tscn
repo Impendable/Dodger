@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://0qpiqsce2pry"]
 
 [ext_resource type="Script" uid="uid://ctt12vkixi46a" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="AudioStream" uid="uid://dfm4owvdfyjex" path="res://SFX/GameOver.wav" id="2_onrkg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7x0ad"]
 size = Vector2(40, 40)
@@ -17,5 +18,9 @@ color = Color(0.39215687, 1, 1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=575325371]
 shape = SubResource("RectangleShape2D_7x0ad")
+
+[node name="GameOver" type="AudioStreamPlayer" parent="." unique_id=14897402]
+stream = ExtResource("2_onrkg")
+bus = &"SFX"
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

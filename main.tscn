@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://co7sx84qo7hnf" path="res://main.gd" id="1_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://0qpiqsce2pry" path="res://player.tscn" id="1_ig7tw"]
+[ext_resource type="AudioStream" uid="uid://cnarsc7xeqhbn" path="res://SFX/NewRecord.wav" id="3_h2yge"]
 
 [node name="Node2D" type="Node2D" unique_id=848245841]
 script = ExtResource("1_0xm2m")
@@ -21,13 +22,16 @@ position = Vector2(320, 300)
 
 [node name="GameOver" type="Label" parent="UI" unique_id=971527984]
 visible = false
-offset_left = -116.0
-offset_top = 118.0
-offset_right = 756.0
-offset_bottom = 223.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 75.0
+offset_bottom = 282.00006
+grow_horizontal = 2
 theme_override_colors/font_color = Color(0.26666668, 0.85882354, 0, 1)
 theme_override_font_sizes/font_size = 48
-text = "GAME OVER - Press SPACE"
+text = "Game Over - Press SPACE
+Score: 2.0s
+Best: 2.0s"
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -38,16 +42,21 @@ offset_right = 51.0
 offset_bottom = 50.0
 theme_override_colors/font_color = Color(1, 1, 1, 0.63529414)
 theme_override_font_sizes/font_size = 29
-text = "0000"
 
 [node name="NewRecord" type="Label" parent="UI" unique_id=1115243586]
 visible = false
-offset_left = 203.0
-offset_top = 80.0
-offset_right = 446.0
-offset_bottom = 135.0
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 55.0
+grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 0.08235294, 1, 1)
 theme_override_font_sizes/font_size = 40
 text = "New Record!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="NewRecord" type="AudioStreamPlayer" parent="." unique_id=697120499]
+stream = ExtResource("3_h2yge")
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

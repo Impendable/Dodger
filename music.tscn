@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://d2fgmorwccp60"]
+
+[ext_resource type="AudioStream" uid="uid://bwhwrskwoowhx" path="res://SFX/GameMusicLoop.ogg" id="1_3h6ak"]
+
+[node name="GameMusic" type="AudioStreamPlayer" unique_id=1701017266]
+stream = ExtResource("1_3h6ak")
+volume_db = -10.0
+autoplay = true
+bus = &"Music"
+parameters/looping = false

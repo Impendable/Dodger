@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://xpobsa3i3ehx"]
 
 [ext_resource type="Script" uid="uid://dbabex32gv3tw" path="res://title.gd" id="1_y7k74"]
+[ext_resource type="AudioStream" uid="uid://pd0vx478shbb" path="res://SFX/StartButton.wav" id="2_oyqm6"]
 
 [node name="Control" type="Control" unique_id=1942209537]
 layout_mode = 3
@@ -53,7 +54,12 @@ offset_top = -49.11499
 offset_bottom = -26.11499
 grow_horizontal = 2
 grow_vertical = 0
-theme_override_colors/font_color = Color(0.64158857, 0.0003210321, 0.64552885, 1)
+theme_override_colors/font_color = Color(0.99999934, 0.27329135, 0.99999994, 1)
 horizontal_alignment = 1
+
+[node name="PlayButton" type="AudioStreamPlayer" parent="." unique_id=224834583]
+stream = ExtResource("2_oyqm6")
+volume_db = 5.0
+bus = &"SFX"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
