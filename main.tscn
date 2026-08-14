@@ -55,7 +55,7 @@ text = "New Record!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="NewRecord" type="AudioStreamPlayer" parent="." unique_id=697120499]
+[node name="RecordSound" type="AudioStreamPlayer" parent="." unique_id=697120499]
 stream = ExtResource("3_h2yge")
 bus = &"SFX"
 

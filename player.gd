@@ -12,6 +12,7 @@ func _ready() -> void:
 	var half_width := 20.0
 	min_x = half_width
 	max_x = get_viewport_rect().size.x - half_width
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -10)
 
 
 
@@ -24,6 +25,5 @@ func _process(delta: float) -> void:
 
 func _on_area_entered(_area: Area2D) -> void:
 	died.emit()
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), 0.25)
 	$GameOver.play()
 	set_process(false)

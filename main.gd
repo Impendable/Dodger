@@ -48,9 +48,9 @@ func _on_timer_timeout() -> void:
 func game_over():
 	$Timer.stop()
 	var is_new_record := time_survived > GameState.best_time
-	
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -25)
 	if is_new_record:
-		$NewRecord.play()
+		$RecordSound.play()
 		GameState.best_time = time_survived
 		new_record.show()
 	game_over_label.text = "GAME OVER - Press SPACE\nSurvived: %.1f\nBest: %.1f" % [time_survived, GameState.best_time]
@@ -59,11 +59,11 @@ func game_over():
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if not is_game_over:
+		if event.is_action_pressed("quit"):
+			get_tree().change_scene_to_file("res://title.tscn")
 		return
 	if event.is_action_pressed("restart"):
 		restart_game()
-	if event.is_action_pressed("quit"):
-		get_tree().change_scene_to_file("res://title.tscn")
 
 func restart_game():
 	get_tree().reload_current_scene()
