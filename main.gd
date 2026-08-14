@@ -7,6 +7,7 @@ const HAZARD_SCENE := preload("res://hazard.tscn")
 var min_x: float
 var max_x: float
 var upper_spawn := -20.0
+var max_speed := 500.0
 var is_game_over := false
 
 
@@ -28,9 +29,9 @@ func _process(delta: float) -> void:
 func _on_timer_timeout() -> void:
 	var hazard = HAZARD_SCENE.instantiate()
 	hazard.position = Vector2(randf_range(min_x, max_x), upper_spawn)
+	hazard.fall_speed = min(hazard.fall_speed + 20, max_speed)
 	add_child(hazard)
 	$Timer.wait_time = max(0.25, $Timer.wait_time -0.02)
-	print($Timer.wait_time)
 	
 func game_over():
 	$Timer.stop()
