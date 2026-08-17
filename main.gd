@@ -4,6 +4,7 @@ extends Node2D
 @onready var score = $UI/Score
 @onready var game_over_label = $UI/GameOver
 @onready var new_record = $UI/NewRecord
+@onready var restart_button = $UI/RestartButton
 
 
 const HAZARD_SCENE := preload("res://hazard.tscn")
@@ -55,6 +56,7 @@ func game_over():
 		new_record.show()
 	game_over_label.text = "GAME OVER - Press SPACE\nSurvived: %.1f\nBest: %.1f" % [time_survived, GameState.best_time]
 	game_over_label.show()
+	restart_button.show()
 	is_game_over = true
 	
 func _unhandled_input(event: InputEvent) -> void:
@@ -63,6 +65,16 @@ func _unhandled_input(event: InputEvent) -> void:
 		return
 	if is_game_over and event.is_action_pressed("restart"):
 		restart_game()
+			
 
 func restart_game():
 	get_tree().reload_current_scene()
+	
+
+func _on_restart_button_pressed() -> void:
+	if restart_button.visible:
+		restart_game()
+
+
+func _on_quit_button_pressed() -> void:
+	get_tree().change_scene_to_file("res://title.tscn")

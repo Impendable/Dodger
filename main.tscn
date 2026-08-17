@@ -13,6 +13,7 @@ autostart = true
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2038729147]
 offset_right = 641.0
 offset_bottom = 361.0
+mouse_filter = 2
 color = Color(0, 0, 0, 1)
 
 [node name="Player" parent="." unique_id=387781656 instance=ExtResource("1_ig7tw")]
@@ -55,8 +56,28 @@ text = "New Record!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="RestartButton" type="Button" parent="UI" unique_id=798137485]
+visible = false
+offset_left = 526.0
+offset_top = 307.0
+offset_right = 639.0
+offset_bottom = 357.0
+theme_override_colors/font_color = Color(0.18039216, 0.8745098, 0.22745098, 1)
+theme_override_font_sizes/font_size = 30
+text = "Restart"
+
+[node name="QuitButton" type="Button" parent="UI" unique_id=1289175837]
+offset_top = 311.0
+offset_right = 71.0
+offset_bottom = 361.0
+theme_override_colors/font_color = Color(0.4117647, 0.8980392, 0.28627452, 1)
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
 [node name="RecordSound" type="AudioStreamPlayer" parent="." unique_id=697120499]
 stream = ExtResource("3_h2yge")
 bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="UI/RestartButton" to="." method="_on_restart_button_pressed"]
+[connection signal="pressed" from="UI/QuitButton" to="." method="_on_quit_button_pressed"]
