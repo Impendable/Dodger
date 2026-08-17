@@ -23,7 +23,7 @@ func _ready() -> void:
 	var hazard_half_width := 8.0
 	min_x = hazard_half_width
 	max_x = get_viewport_rect().size.x - hazard_half_width
-	
+	Music.normal()
 	player.died.connect(game_over)
 
 
@@ -48,7 +48,7 @@ func _on_timer_timeout() -> void:
 func game_over():
 	$Timer.stop()
 	var is_new_record := time_survived > GameState.best_time
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -25)
+	Music.duck()
 	if is_new_record:
 		$RecordSound.play()
 		GameState.best_time = time_survived
@@ -58,11 +58,10 @@ func game_over():
 	is_game_over = true
 	
 func _unhandled_input(event: InputEvent) -> void:
-	if not is_game_over:
-		if event.is_action_pressed("quit"):
-			get_tree().change_scene_to_file("res://title.tscn")
+	if event.is_action_pressed("quit"):
+		get_tree().change_scene_to_file("res://title.tscn")
 		return
-	if event.is_action_pressed("restart"):
+	if is_game_over and event.is_action_pressed("restart"):
 		restart_game()
 
 func restart_game():

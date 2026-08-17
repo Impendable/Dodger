@@ -12,7 +12,6 @@ func _ready() -> void:
 	var half_width := 20.0
 	min_x = half_width
 	max_x = get_viewport_rect().size.x - half_width
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Music"), -10)
 
 
 
